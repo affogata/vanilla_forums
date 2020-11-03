@@ -4,10 +4,8 @@ class VanillaForums
                 :dateUpdated, :discussionID,
                 :insertUserID, :score, :url
 
-    api_endpoint '/comments'
-
     def user
-      @user ||= VanillaForums::User.find_by_id(insertUserID)
+      @user ||= VanillaForums::UserCriteria.find_by_id(insertUserID)
     end
 
     def inspect

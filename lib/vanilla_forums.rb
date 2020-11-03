@@ -3,10 +3,15 @@ require "vanilla_forums/version"
 require 'vanilla_forums/exceptions'
 require 'vanilla_forums/configuration'
 require 'vanilla_forums/base_resource'
-require 'vanilla_forums/resources/discussion'
-require 'vanilla_forums/resources/comment'
-require 'vanilla_forums/resources/user'
-require 'vanilla_forums/resources/category'
+require 'vanilla_forums/base_criteria'
+require 'vanilla_forums/models/discussion'
+require 'vanilla_forums/models/comment'
+require 'vanilla_forums/models/user'
+require 'vanilla_forums/models/category'
+require 'vanilla_forums/criterias/category_criteria'
+require 'vanilla_forums/criterias/user_criteria'
+require 'vanilla_forums/criterias/discussion_criteria'
+require 'vanilla_forums/criterias/comment_criteria'
 require 'vanilla_forums/client'
 
 class VanillaForums
@@ -27,19 +32,19 @@ class VanillaForums
   end
 
   def discussions
-    VanillaForums::Discussion
+    VanillaForums::DiscussionCriteria.new(@client)
   end
 
   def users
-    VanillaForums::User
+    VanillaForums::UserCriteria.new(@client)
   end
 
   def comments
-    VanillaForums::Comment
+    VanillaForums::CommentCriteria.new(@client)
   end
 
-  def category
-    VanillaForums::Category
+  def categories
+    VanillaForums::CategoryCriteria.new(@client)
   end
 
   def debug_mode?

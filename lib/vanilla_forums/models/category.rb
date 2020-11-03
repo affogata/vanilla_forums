@@ -5,8 +5,6 @@ class VanillaForums
                 :customPermissions, :description, :displayAs, :followed,
                 :isArchived, :name, :parentCategoryID, :url, :urlcode
 
-    api_endpoint '/categories'
-
     def inspect
       "<VanillaForums::Category[#{categoryId}] '#{name}'>"
     end
