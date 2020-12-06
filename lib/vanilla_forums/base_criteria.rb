@@ -30,6 +30,12 @@ class VanillaForums
       end
     end
 
+    def create(options = {})
+      response = client.post(self.class.endpoint, body: options)
+      handle_response_code(response)
+      self.class.model_class.new(response.parsed_response)
+    end
+    
     def find_by_id(id, options = {})
       response = client.get(self.class.endpoint + "/#{id}",query: options)
       handle_response_code(response)

@@ -8,10 +8,12 @@ require 'vanilla_forums/models/discussion'
 require 'vanilla_forums/models/comment'
 require 'vanilla_forums/models/user'
 require 'vanilla_forums/models/category'
+require 'vanilla_forums/models/webhook'
 require 'vanilla_forums/criterias/category_criteria'
 require 'vanilla_forums/criterias/user_criteria'
 require 'vanilla_forums/criterias/discussion_criteria'
 require 'vanilla_forums/criterias/comment_criteria'
+require 'vanilla_forums/criterias/webhook_criteria'
 require 'vanilla_forums/client'
 
 class VanillaForums
@@ -37,6 +39,9 @@ class VanillaForums
 
   def users
     VanillaForums::UserCriteria.new(@client)
+  end
+  def webhooks
+    VanillaForums::WebhookCriteria.new(@client)
   end
 
   def comments

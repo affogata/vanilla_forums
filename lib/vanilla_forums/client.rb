@@ -8,6 +8,15 @@ class VanillaForums
       @debug_mode = debug_mode
     end
 
+    def post(uri, body = {})
+      HTTParty.post("#{base_uri}#{uri}", body: body,
+                    headers: {
+                        "Authentication" => "Bearer #{access_token}",
+                        "Content-Type" => 'application/json'
+                    },
+                    debug_output: debug_mode == true ? $stdout : $stderr)
+    end
+
     def get(uri, query = {})
       HTTParty.get("#{base_uri}#{uri}", query: query,
                    headers: {
